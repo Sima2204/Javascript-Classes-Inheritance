@@ -27,7 +27,7 @@ class BuilderES6 {
 
 class IntBuilder extends BuilderES6 {
     plus(...n) { 
-        this.integer = [...arguments, this.integer].reduce((accum, curr) => accum + curr, 0);
+        this.integer = [this.integer, ...n].reduce((accum, curr) => accum + curr, 0);
         
         return this;
     }
