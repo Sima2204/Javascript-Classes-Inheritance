@@ -23,21 +23,26 @@ function BuilderES5 (str) {
     this.str = str;
 }
 
-function StringBuilder (str) {
-    BuilderES5.call(this, str);
+function StringBuilder (x) {
+    BuilderES5.call(this, x);
 }
+
+Object.setPrototypeOf(
+    StringBuilder.prototype,
+    BuilderES5.prototype,
+);
     
 StringBuilder.prototype.plus = function (...str) {
-    this.str = [this.str, ...arguments].join('');
-    return this.str;
+    this.str = [this.str, ...str].join('');
+    return this;
 }
 
 StringBuilder.prototype.minus = function (n) {
     if (!this.str) {
         throw "String is empty!";
     } else {
-        this.str = this.str.slice(0, this.str.length - n);
-        return this.str;
+        this.str = this.str.slice(0, -n);
+        return this;
     }
 }
 
@@ -50,7 +55,7 @@ StringBuilder.prototype.multiply = function (n) {
             subStr += this.str;
         }
         this.str = subStr;
-        return this.str;
+        return this;
     }
 }
 
@@ -61,7 +66,7 @@ StringBuilder.prototype.divide = function (n) {
         const k = Math.floor(this.str.length / n);
         let subStr = this.str.slice(0, k);
         this.str = subStr;
-        return this.str;
+        return this;
     }
 }
 
@@ -69,10 +74,10 @@ StringBuilder.prototype.remove = function (str) {
     if (!this.str) {
         throw "String is empty!";
     } else {
-        const arrStored = this.str.split('');
-        const arrDeleted = str.split('');
+        const arrStored = [...this.str];
+        const arrDeleted = [...str];
         this.str = arrStored.filter(char => !arrDeleted.includes(char)).join('');
-        return this.str;
+        return this;
     }
 }
 
@@ -81,7 +86,7 @@ StringBuilder.prototype.sub = function (from, n) {
         throw "String is empty!";
     } else {
         this.str = this.str.slice(from, n+1);
-        return this.str;
+        return this;
     }
 }
 
@@ -91,7 +96,7 @@ StringBuilder.prototype.get = function () {
 
 StringBuilder.prototype.reverse = function () {
     this.str = this.str.split('').reverse().join('');
-    return this.str;
+    return this;
 }
 
 // let strBuilder = new StringBuilder('Hello');
