@@ -10,7 +10,7 @@
 
 // EXAMPLE:
 // const strBuilder = new StringBuilder('Hello'); // 'Hello';
-// strBuilder
+// strBuilder.plus(' all', '!').minus(4).multiply(3).divide(4).remove('l').sub(1,1).get(); 
 //   .plus(' all', '!')                         // 'Hello all!'
 //   .minus(4)                                  // 'Hello '
 //   .multiply(3)                               // 'Hello Hello Hello '
@@ -74,9 +74,8 @@ StringBuilder.prototype.remove = function (str) {
     if (!this.str) {
         throw "String is empty!";
     } else {
-        const arrStored = [...this.str];
-        const arrDeleted = [...str];
-        this.str = arrStored.filter(char => !arrDeleted.includes(char)).join('');
+        // const arrStored = [...this.str];
+        this.str = this.str.split(str).join('');
         return this;
     }
 }
