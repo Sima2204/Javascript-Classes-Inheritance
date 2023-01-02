@@ -20,38 +20,38 @@
 //   intBuilder.get();                            // -> 1;
 
 class BuilderES6 {
-    constructor(integer) {
-        this.integer = integer || 0;
+    constructor(integer = 0) {
+        this.integer = integer;
     }
 }
 
 class IntBuilder extends BuilderES6 {
     plus(...n) { 
-        this.integer = [...arguments, this.integer].reduce((accum, curr) => accum + curr, 0);
+        this.integer = [...n].reduce((accum, curr) => accum + curr, this.integer);
         
-        return this.integer;
+        return this;
     }
 
     minus(...n) {
-        this.integer = [...arguments].reduce((accum, curr) => accum - curr, this.integer);
+        this.integer = [...n].reduce((accum, curr) => accum - curr, this.integer);
 
-        return this.integer;
+        return this;
     }
 
     multiply(n) {
         this.integer *= n;
 
-        return this.integer;
+        return this;
     }
 
     divide(n) {
         if (!n) {
-            return Error;
+            throw Error;
         } else {
             this.integer = Math.floor(this.integer / n);
         }
 
-        return this.integer;
+        return this;
     }
 
     mod(n) {
@@ -61,7 +61,7 @@ class IntBuilder extends BuilderES6 {
             this.integer = this.integer % n;
         }
 
-        return this.integer;
+        return this;
     }
 
     get() {
@@ -71,7 +71,7 @@ class IntBuilder extends BuilderES6 {
     pow(exponent) {
         this.integer = Math.pow(this.integer, exponent);
 
-        return this.integer;
+        return this;
     }
 
     static random(from, to) {
