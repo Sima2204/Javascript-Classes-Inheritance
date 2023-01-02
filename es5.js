@@ -83,7 +83,7 @@ StringBuilder.prototype.sub = function (from, n) {
     if (!this.str) {
         throw "String is empty!";
     } else {
-        this.str = this.str.substring(from, n+1);
+        this.str = this.str.substring(from, from + n);
         return this;
     }
 }
