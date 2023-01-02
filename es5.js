@@ -83,8 +83,8 @@ StringBuilder.prototype.sub = function (from, n) {
     if (!this.str) {
         throw "String is empty!";
     } else {
-        const subStr = this.str.substring(from, n+1);
-        return subStr;
+        this.str = this.str.substring(from, n+1);
+        return this;
     }
 }
 
