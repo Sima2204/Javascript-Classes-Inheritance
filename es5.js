@@ -74,7 +74,6 @@ StringBuilder.prototype.remove = function (str) {
     if (!this.str) {
         throw "String is empty!";
     } else {
-        // const arrStored = [...this.str];
         this.str = this.str.split(str).join('');
         return this;
     }
@@ -84,8 +83,8 @@ StringBuilder.prototype.sub = function (from, n) {
     if (!this.str) {
         throw "String is empty!";
     } else {
-        this.str = this.str.slice(from, n+1);
-        return this;
+        const subStr = this.str.substring(from, n+1);
+        return subStr;
     }
 }
 
