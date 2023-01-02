@@ -33,7 +33,7 @@ class IntBuilder extends BuilderES6 {
     }
 
     minus(...n) {
-        this.integer = [...arguments].reduce((accum, curr) => accum - curr, this.integer);
+        this.integer = [...n].reduce((accum, curr) => accum - curr, this.integer);
 
         return this;
     }
